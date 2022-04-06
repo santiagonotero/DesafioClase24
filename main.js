@@ -41,10 +41,12 @@ app.use(session({
   store:new MongoStore({
     mongoUrl: `${SCHEMA}://${USER}:${PASSWORD}@${HOSTNAME}/${DATABASE}?${OPTIONS}`,
     expires: 60,
+    createdAt: new Date(),
     autoRemove: 'native',
     autoRemoveInterval: 1,
     ttl: 60, 
-    autoRemove: true
+    autoRemove: true,
+    delete: true
   })
 }))
 app.set('view engine', 'hbs')
