@@ -41,15 +41,17 @@ app.use(session({
   store:new MongoStore({
     mongoUrl: `${SCHEMA}://${USER}:${PASSWORD}@${HOSTNAME}/${DATABASE}?${OPTIONS}`,
     expires: 60,
-    autoRemove: 'Interval',
-    autoRemoveInterva: 10
+    autoRemove: 'native',
+    autoRemoveInterval: 1,
+    ttl: 60, 
+    autoRemove: true
   })
 }))
 app.set('view engine', 'hbs')
 app.engine('hbs',engine({
   layoutsDir: path.join(__dirname,'/views'),
   extname: 'hbs',
-  defaultLayout:''
+  defaultLayout:'index'
 }))
 
 
